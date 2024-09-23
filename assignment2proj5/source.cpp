@@ -8,11 +8,20 @@ using namespace std;
 struct STUDENT_DATA {
 	string firstname;
 	string lastname;
+	string email;
 };
 
 int main() {
 
-	ifstream file("StudentData.txt");
+#ifdef PRE_RELEASE
+	cout << "Running in Pre-Release mode." << endl;
+#else
+	cout << "Running in Standard mode." << endl;
+#endif
+
+	ifstream file("..\\StudentData.txt");
+
+	
 
 	vector<STUDENT_DATA> student_data;
 	string line;
@@ -33,6 +42,23 @@ int main() {
 	{
 		cout << "First Name: " << student_data[i].firstname << ", Last Name: " << student_data[i].lastname << endl;
 	}
+#endif
+
+
+#ifdef PRE_RELEASE
+	ifstream file2("..\\StudentData_Emails.txt");
+
+	 size_t index = 0;
+	while (getline(file2, line) && index < student_data.size()) {
+		istringstream iss(line);
+		string email;
+		getline(iss, email, ',');
+		cout << "First Name: " << student_data[index].firstname << ", Last Name: " << student_data[index].lastname << ", Email: " << email << endl;
+		index++;
+	}
+
+	file2.close();
+
 #endif
 
 
