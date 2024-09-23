@@ -28,6 +28,14 @@ int main() {
 
 	file.close();
 
+#ifdef _DEBUG
+	for (int i = 0; i < student_data.size(); ++i)
+	{
+		cout << "First Name: " << student_data[i].firstname << ", Last Name: " << student_data[i].lastname << endl;
+	}
+#endif
+
+
 	return 1;
 
 }
